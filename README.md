@@ -1,54 +1,60 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# CryptoFolio
 
-Currently, two official plugins are available:
+Этот проект позволяет отслеживать ваши криптовалютные активы в реальном времени. Вы можете добавлять монеты, указывать их количество и видеть:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ - Текущую цену (через WebSocket Binance)
+ - Общую стоимость (количество × цена)
+ - Изменение цены за 24 часа (+/- в $ и %)
+ - Долю в портфеле (% от общей стоимости)
 
-## Expanding the ESLint configuration
+# Основные функции
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Добавление и удаление токенов
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- В модальном окне (ModalWindow) можно указать количество для каждой монеты.
+
+- Данные сохраняются в localStorage и не пропадают после перезагрузки.
+
+- Чтобы удалить токен, кликните на строку в таблице.
+
+2. Отслеживание цен в реальном времени
+
+- Подключение к Binance WebSocket API (wss://stream.binance.com).
+
+- Отображение:
+
+        - Текущей цены (trade)
+
+        - Изменения за 24ч (ticker)
+
+3. Расчет доли в портфеле
+
+Функция calculatePortfolioPercentage() вычисляет, какой процент от общего портфеля занимает каждый токен.
+
+# Технологии
+
+- React (хуки useState, useEffect)
+
+- WebSocket (реал-тайм данные с Binance)
+
+- LocalStorage (сохранение токенов)
+
+- CSS-модули (стилизация таблицы и модалки)
+
+# Как запустить?
+
+1. Установите зависимости:
+```bash
+npm install
+```
+2. Запустите проект:
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+# Скриншоты
+![Vite-React-TS](https://github.com/user-attachments/assets/71201f3a-39c4-4a80-86c2-7069fd48d3be)
+![Vite-React-TS2](https://github.com/user-attachments/assets/4fe71180-ef47-439c-a756-70a531ffa94c)
+![Vite-React-TS3](https://github.com/user-attachments/assets/bf6b339a-4ad6-4922-bd22-abb6d96bd90e)
+![Vite-React-TS4](https://github.com/user-attachments/assets/25a1ddbb-8882-477e-a515-909306994390)
