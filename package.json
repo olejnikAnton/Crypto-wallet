@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://sqri1.github.io/Crypto-wallet/",
+  "homepage": "https://olejnikAnton.github.io/Crypto-wallet/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
